@@ -100,12 +100,15 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--royal-blue) 0%, var(--vivid-purple) 100%);
-            padding: 10rem 2rem 6rem;
+            padding: 8rem 2rem 8rem;
             margin-top: 5rem;
             text-align: center;
             color: var(--white);
             position: relative;
             overflow: hidden;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
         }
         
         .hero::before {
@@ -115,8 +118,28 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.3) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
         }
         
         .hero-content {
@@ -124,33 +147,56 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            width: 100%;
         }
         
         .hero-logo {
-            margin-bottom: 2rem;
+            margin-bottom: 3.5rem;
+            animation: fadeInScale 1s ease-out;
+        }
+        
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
         }
         
         .hero-logo img {
-            height: 120px;
+            height: 220px;
             width: auto;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 25px 60px rgba(0,0,0,0.5));
+            transition: transform 0.3s ease;
+        }
+        
+        .hero-logo img:hover {
+            transform: scale(1.05);
         }
         
         .hero h1 {
             font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            line-height: 1.2;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         
         .hero-subtitle {
             font-size: 1.4rem;
-            margin-bottom: 3rem;
-            opacity: 0.95;
+            margin-bottom: 3.5rem;
+            opacity: 0.93;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.7;
+            line-height: 1.75;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
         
         .hero-buttons {
@@ -158,39 +204,65 @@
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
         
         .btn {
-            padding: 1.1rem 2.8rem;
-            border-radius: 10px;
+            padding: 1.3rem 3.5rem;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
             display: inline-block;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            font-size: 0.95rem;
         }
         
         .btn-primary {
             background: var(--emerald-green);
             color: var(--white);
-            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
         }
         
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 30px rgba(16, 185, 129, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.6);
         }
         
         .btn-secondary {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15);
             color: var(--white);
-            border: 2px solid rgba(255,255,255,0.5);
+            border: 2px solid rgba(255,255,255,0.6);
             backdrop-filter: blur(10px);
         }
         
         .btn-secondary:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.25);
             border-color: var(--white);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.2);
         }
         
         /* Platform Showcase Section */
@@ -553,19 +625,27 @@
             }
             
             .hero {
-                padding: 8rem 1.5rem 4rem;
+                padding: 6rem 1.5rem 5rem;
+                min-height: 75vh;
             }
             
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
+                line-height: 1.2;
             }
             
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1.15rem;
+                line-height: 1.6;
             }
             
             .hero-logo img {
-                height: 80px;
+                height: 120px;
+            }
+            
+            .btn {
+                padding: 1.1rem 2.5rem;
+                font-size: 0.9rem;
             }
             
             .section-title {
@@ -604,11 +684,11 @@
             <div class="hero-logo">
                 <img src="unity-logo.jpg" alt="Unity VMS Hub">
             </div>
-            <h1>Healthcare Staffing Platform<br>Built for Transparency</h1>
-            <p class="hero-subtitle">The client-centric VMS platform with real-time analytics, vendor neutrality, and the industry's first free provider portal</p>
+            <h1>Enterprise Healthcare Staffing<br>Reimagined</h1>
+            <p class="hero-subtitle">Empowering healthcare facilities with transparent workflows, real-time intelligence, and the industry's first free provider portal</p>
             <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Request a Demo</a>
-                <a href="#platform" class="btn btn-secondary">Explore Platform</a>
+                <a href="#contact" class="btn btn-primary">Schedule a Demo</a>
+                <a href="#platform" class="btn btn-secondary">Explore the Platform</a>
             </div>
         </div>
     </section>
@@ -807,7 +887,7 @@
         <div class="container">
             <h2>Ready to Transform Your Healthcare Staffing?</h2>
             <p>Schedule a personalized demo and discover how Unity VMS Hub can optimize your contingent workforce management</p>
-            <a href="mailto:contact@unityvmshub.com" class="btn btn-primary">Request a Demo Today</a>
+            <a href="/cdn-cgi/l/email-protection#cfaca0a1bbaeacbb8fbaa1a6bbb6b9a2bca7baade1aca0a2" class="btn btn-primary">Request a Demo Today</a>
         </div>
     </section>
 
@@ -838,15 +918,6 @@
             
             <div class="footer-section">
                 <h4>Contact</h4>
-                <a href="mailto:contact@unityvmshub.com">contact@unityvmshub.com</a>
+                <a href="/cdn-cgi/l/email-protection#40232f2e3421233400352e293439362d332835226e232f2d"><span class="__cf_email__" data-cfemail="c5a6aaabb1a4a6b185b0abacb1bcb3a8b6adb0a7eba6aaa8">[email&#160;protected]</span></a>
                 <a href="#">Support</a>
                 <a href="#">Documentation</a>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2025 Unity VMS Hub. All rights reserved.</p>
-        </div>
-    </footer>
-</body>
-</html>
